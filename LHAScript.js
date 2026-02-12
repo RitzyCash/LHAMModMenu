@@ -78,7 +78,7 @@
 
             /* Custom Background Logic */
             ${bgUrl ? `
-                body, .page-wrapper, #main-wrapper { 
+                body, .page-wrapper, #main-wrapper {
                     background-image: url('${bgUrl}') !important;
                     background-size: cover !important;
                     background-position: center !important;
@@ -102,7 +102,7 @@
             }
 
             /* UI Element Removal */
-            #main-menuhelper, 
+            #main-menuhelper,
             .e-text-content:has(a[href*="mobile/home/home.aspx"]),
             #about_attend,
             #about_attend_logo,
@@ -117,7 +117,9 @@
                 background-repeat: no-repeat !important;
                 width: 26px !important;
                 height: 20px !important;
-                margin-left: 30px !important;
+                margin-left: 10px !important;
+                position: relative !important;
+                left: 5px !important;
                 filter: invert(1) !important; /* Default invert */
             }
 
@@ -128,7 +130,7 @@
             }
 
             /* Shrink images in Bulletin Panels */
-            div.ss-panel img, 
+            div.ss-panel img,
             div.ss-panel-content img,
             .entry-Message img {
                 max-width: 180px !important;
@@ -142,7 +144,7 @@
             }
 
             /* Expanded state: Return to original size */
-            div.ss-panel img.lha-mod-expanded, 
+            div.ss-panel img.lha-mod-expanded,
             div.ss-panel-content img.lha-mod-expanded,
             .entry-Message img.lha-mod-expanded {
                 max-width: 100% !important;
@@ -150,8 +152,8 @@
                 transform: none !important;
             }
 
-            div.ss-panel img:hover:not(.lha-mod-expanded), 
-            div.ss-panel-content img:hover:not(.lha-mod-expanded), 
+            div.ss-panel img:hover:not(.lha-mod-expanded),
+            div.ss-panel-content img:hover:not(.lha-mod-expanded),
             .entry-Message img:hover:not(.lha-mod-expanded) {
                 transform: scale(1.05);
             }
@@ -527,7 +529,7 @@
                     <span>Mod Settings</span>
                     <a href="#" id="lha-back-btn" class="lha-mod-back">← Back to Site</a>
                 </div>
-                
+
                 <div class="lha-mod-section">
                     <div class="lha-mod-field">
                         <label class="lha-mod-label">Custom Background Image URL</label>

@@ -16,5 +16,5 @@ This is a small project I started a while ago when I first attended the school, 
 - Font colour editing and font changing *(Kinda useless but cool)*
 
 # Change Log [12/02/26]
-- Moved the logout logo right by 20 pixels (increased left margin from 10px to 30px).
+- Moved the logout logo right by 20 pixels (increased left margin from 0px to 5px).
 - Removed the logout logo fade effect so it instantly switches colors when hovered.

@@ -110,6 +110,24 @@
                 display: none !important;
             }
 
+            /* Custom Panel Coloring */
+            #main-topbar-right {
+                background-color: #2d2d2d !important;
+            }
+
+            #default_panel {
+                background-color: rgba(45, 45, 45, 0.8) !important;
+                backdrop-filter: blur(5px);
+            }
+
+            .defaultheadbar_right {
+                background-color: #2d2d2d !important;
+            }
+
+            .schoolname-title {
+                color: #ccc !important;
+            }
+
             /* Custom Logout Icon */
             .nav-icon-studentlogout {
                 background-image: url('https://cdn-icons-png.flaticon.com/512/660/660350.png') !important;
@@ -200,6 +218,8 @@
                 opacity: 0.5;
                 font-style: italic;
                 font-family: monospace;
+                font-size: 13px;
+                margin-left: 5px;
             }
 
             #lha-privacy-btn {
@@ -515,6 +535,101 @@
         addReadAllButton();
     };
 
+    // --- Force Complete Logic ---
+    const handleForceComplete = () => {
+        const isTargetPage = window.location.href.includes('upcominggrid.aspx');
+        if (!isTargetPage) return;
+
+        const attachForceButton = () => {
+            // Find ALL incomplete bubbles that haven't been processed
+            const incompleteBubbles = document.querySelectorAll('.incompletebubble:not(.lha-force-complete-processed)');
+
+            incompleteBubbles.forEach(bubble => {
+                const checkbox = bubble.querySelector('input[id*="cbcomplete"]');
+
+                if (checkbox) {
+                    bubble.classList.add('lha-force-complete-processed');
+                    const hwId = checkbox.id.split('_').pop();
+
+                    // Ensure parent stability
+                    if (getComputedStyle(bubble).position === 'static') {
+                        bubble.style.position = 'relative';
+                    }
+                    bubble.style.overflow = 'visible';
+
+                    // Create container (Grey themed, on the LEFT)
+                    const container = document.createElement('div');
+                    container.className = 'lha-force-btn-container';
+                    container.style.cssText = `
+                        position: absolute !important;
+                        right: calc(100% + 15px) !important; /* Left side */
+                        top: 50% !important;
+                        transform: translateY(-50%) !important;
+                        display: flex !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        z-index: 2147483647 !important;
+                        background-color: #333 !important; /* Dark Grey */
+                        padding: 3px 18px !important; /* Shorter and wider */
+                        min-width: 90px !important;    /* Ensure width */
+                        border-radius: 4px !important;
+                        border: 1px solid #555 !important;
+                        white-space: nowrap !important;
+                        box-shadow: 0 4px 8px rgba(0,0,0,0.5) !important;
+                        cursor: pointer !important;
+                        transition: background-color 0.2s;
+                    `;
+
+                    container.innerHTML = `
+                        <span style="font-size: 11px !important; color: #ccc !important; font-weight: bold !important; user-select: none !important; text-transform: uppercase; letter-spacing: 0.5px;">
+                            Complete
+                        </span>
+                    `;
+
+                    container.onmouseover = () => { container.style.backgroundColor = '#444'; };
+                    container.onmouseout = () => { container.style.backgroundColor = '#333'; };
+
+                    container.onclick = async (e) => {
+                        e.stopPropagation();
+
+                        try {
+                            const response = await fetch("https://lha.schoolsynergy.co.uk/portal/students_v2/desktop/homework/DataHandler.ashx?type=students_v2_desktop_homework_stucomplete_set", {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                    "X-Requested-With": "XMLHttpRequest"
+                                },
+                                body: `mhwid=${hwId}&mhdstucomplete=1` // Only allow setting to 1
+                            });
+
+                            if (response.ok) {
+                                container.innerHTML = '<span style="color: #4a9eff;">Done!</span>';
+                                container.style.pointerEvents = 'none';
+                                setTimeout(() => {
+                                    location.reload(); // Refresh to show updated status
+                                }, 1000);
+                            }
+                        } catch (err) {
+                            console.error('[LHA Mod] Force Complete failed', err);
+                            alert('Failed to update status.');
+                        }
+                    };
+
+                    // Append to bubble
+                    bubble.appendChild(container);
+                }
+            });
+        };
+
+        try {
+            const observer = new MutationObserver(attachForceButton);
+            observer.observe(document.documentElement || document, { childList: true, subtree: true });
+            attachForceButton();
+        } catch (e) { }
+
+        setInterval(attachForceButton, 1500);
+    };
+
     // --- Settings Page Rendering ---
     const renderSettingsPage = () => {
         document.title = "LHA Mod Menu - Settings";
@@ -594,6 +709,7 @@
         handleImageRedirection();
         handleImageExpansion();
         handleReadAllBulletins();
+        handleForceComplete();
         handlePrivacyToggle();
 
         if (window.location.pathname === SETTINGS_PATH) {

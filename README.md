@@ -15,7 +15,9 @@ This is a small project I started a while ago when I first attended the school, 
 - Hidden personal info by default *(Why isnt this a feature?)*
 - Font colour editing and font changing *(Kinda useless but cool)*
 - Force completion for homework tasks that cannot be completed *(Why do they do this?)*
+- Colour scheme edited slightly
 
 # Change Log [12/02/26]
 - Fixed image scaling happening to other images off of the bulletin
 - Added force completion for homework tasks that are forced incomplete
+- Changed bleu colours to a grey/dark grey colour scheme

@@ -12,9 +12,10 @@ This is a small project I started a while ago when I first attended the school, 
 - Edited Logout button icon to actually be a logout icon
 - Added mark all bulletins as read
 - Made bulletin images smaller by default
-- Hidden personal info by default *(why isnt this a feature?)*
+- Hidden personal info by default *(Why isnt this a feature?)*
 - Font colour editing and font changing *(Kinda useless but cool)*
+- Force completion for homework tasks that cannot be completed *(Why do they do this?)*
 
 # Change Log [12/02/26]
-- Moved the logout logo right by 20 pixels (increased left margin from 0px to 5px).
-- Removed the logout logo fade effect so it instantly switches colors when hovered.
+- Fixed image scaling happening to other images off of the bulletin
+- Added force completion for homework tasks that are forced incomplete

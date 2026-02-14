@@ -2,6 +2,10 @@
 
 This is a small project I started a while ago when I first attended the school, I always hated the website design and the annoying features. So this is a small Tampermonkey script that fixes those issues.
 
+## Installation
+- You can either use the userscript in Tampermoney [*tutorial*](https://www.thesslstore.com/blog/install-a-chrome-extension/)
+- Or install the extention straight into your browser [*tutorial*](https://www.thesslstore.com/blog/install-a-chrome-extension/)
+
 
 # Features
 - Removed 'attend' advertising

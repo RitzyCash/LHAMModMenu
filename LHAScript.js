@@ -3,7 +3,7 @@
 // @namespace    http://tampermonkey.net/
 // @version      0.2
 // @description  QoL improvements for LHA School Synergy, including custom backgrounds, text customization, and image redirection.
-// @author       Antigravity
+// @author       SwiftSeal
 // @match        https://lha.schoolsynergy.co.uk/*
 // @grant        GM_addStyle
 // @grant        GM_setValue

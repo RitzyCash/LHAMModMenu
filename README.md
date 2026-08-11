@@ -20,8 +20,17 @@ This is a small project I started a while ago when I first attended the school, 
 - Font colour editing and font changing *(Kinda useless but cool)*
 - Force completion for homework tasks that cannot be completed *(Why do they do this?)*
 - Colour scheme edited slightly
+- Custom favicon
+- Removed backbutton on homepage *(The designer needs a better QA team)*
 
-# Change Log [13/02/26]
-- Fixed image scaling happening to other images off of the bulletin
-- Added force completion for homework tasks that are forced incomplete
-- Changed bleu colours to a grey/dark grey colour scheme
+# Change Log [11/08/26] - The Almost Final Update
+- Fixed image scaling happening off of the bulletin
+- Fixed update notif showing on every page
+- Added an upload button to the custom background
+- New logo
+- Custom favicon logo
+- Removed back header on homepage
+- Fixed up the settings button to look nicer
+
+## A Quick Note
+I have left the school and will lose access to my account soon, I will make a final update to allow toggling of different features, like the custom shield logo. Hopefully that will be tomorrow!
